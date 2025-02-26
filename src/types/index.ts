@@ -1,10 +1,10 @@
 import { IEvents } from "../components/base/events";
 
-export type Id = string
+export type Id = string;
 
 export type Payment = 'online' | 'cash';
 
-export interface IProduct {
+export interface IProductItem {
     id: Id;
     description: string;
     image: string;
@@ -13,15 +13,15 @@ export interface IProduct {
     price: number | null;
 }
 
-export interface ICatalog {
-    items: IProduct[]
+export interface IProductList {
+    items: IProductItem[];
 }
 
-export interface IBasket {
+export interface ICart {
     items: Map<Id, number>;
 }
 
-export interface IOrderRequest {
+export interface IOrderForm {
     payment: Payment;
     email: string;
     phone: string;
@@ -30,15 +30,15 @@ export interface IOrderRequest {
     items: Id[];
 }
 
-export interface IOrder {
+export interface IOrderDetails {
     id: Id;
     total: number;
 }
 
-export interface IView {
+export interface IViewComponent {
     render(data?: object): HTMLElement;
 }
 
-export interface IViewConstructor {
-    new(container: HTMLElement, events?: IEvents): IView;
+export interface IViewInitializer {
+    new(container: HTMLElement, events?: IEvents): IViewComponent;
 }
